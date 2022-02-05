@@ -15,28 +15,28 @@
 
                 default_layer {
 // -------------------------------------------------------------------------------------
-// | ESC          |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I      |  O    |  P     |   BKSP      |
-// | CTRL(`)      |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K      |  L    |  ;     |    '        |
-// | SHFT(TAB)    |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,      |  .    |  /     | SHFT(RET)   |
-//                         | ALT        | LWR       | SPC      | RSE     | ALT |
+// |  ESC         |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I      |  O    |  P     |  BKSP       |
+// |  CTRL(`)     |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K      |  L    |  ;     |  '          |
+// |  SHFT(TAB)   |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,      |  .    |  /     |  SHFT(RET)  |
+//                         |  ALT       |  LWR      |  SPC     |  RSE    |  ALT     |
                         bindings = <
    &kp ESC         &kp Q &kp W &kp E &kp R &kp T     &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &mt LCTRL GRAVE &kp A &kp S &kp D &kp F &kp G     &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+   &mt LCTRL GRAVE &kp A &kp S &kp D &kp F &kp G     &kp H &kp J  &kp K     &kp L   &kp SEMI &mt SQT
    &mt LSHFT TAB   &kp Z &kp X &kp C &kp V &kp B     &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &mt RSHFT RET
-                           &mt LALT LEFT &mt LGUI UP &kp SPACE &lt 1 DOWN &kp 2 RIGHT
+                           &mt LGUI LEFT &mt LALT UP &lt 1 DOWN &mt SPACE &lt 2 RIGHT
                         >;
                 };
 
                 lower_layer {
 // ----------------------------------------------------------------------------------
-// |     |  1      |  2        |  3     |  4     |  5     |  |  6     |  7      |  8      |  9      |  0     | DEL         |
-// |     |  _      |  +        |  {     |  }     | "|"    |  | LFT    | DWN     |  UP     | RGT     |  `     | ~           |
-// |     | ESC     | GUI       | ALT    | CAPS   |  "     |  | HOME   | END     | PGUP    | PGDN    | PRSC   | SHFT(RET)   |
-//                                     |      |     | SPC     |      |      |
+// |     |  1      |  2        |  3     |  4     |  5     |  |  6     |  -      |  +      |  (      |  )     |  BSLH      |
+// |     |  _      |  +        |  {     |  }     | `|`    |  |  LFT   |  DWN    |  UP     |  RGT    |  `     |  RET       |
+// |     |  ESC    |  GUI      |  ALT   |  CAPS  |  "     |  |  HOME  |  END    |  PGUP   |  PGDN   |  PRSC  |  SHFT(RET) |
+//                                     |      |     |  SPC    |      |      |
                         bindings = <
-   &trans &kp N1    &kp N2      &kp N3   &kp N4   &kp N5      &kp N6   &kp MINUS &kp PLUS  &kp LPAR  &kp RPAR &kp BSPC
-   &trans &kp MINUS &kp KP_PLUS &kp LBRC &kp RBRC &kp PIPE    &kp LEFT &kp DOWN  &kp UP    &kp LBKT  &kp RBKT &kp BSLH
-   &trans &kp ESC   &kp LGUI    &kp LALT &kp CLCK &kp DQT     &kp HOME &kp END   &kp PG_UP &kp MINUS &kp PLUS &kp RIGHT
+   &trans &kp N1    &kp N2      &kp N3   &kp N4   &kp N5      &kp N6   &kp LPAR  &kp RPAR  &kp MINUS &kp PLUS &kp BSLH
+   &trans &kp MINUS &kp KP_PLUS &kp LBRC &kp RBRC &kp PIPE    &kp LEFT &kp DOWN  &kp UP    &kp LBKT  &kp RBKT &kp RET
+   &kp C_AC_UNDO &kp ESC   &kp LGUI    &kp LALT &kp CLCK &kp DQT     &kp HOME &kp END   &kp PG_UP &kp LPAR  &kp RPAR &kp C_AC_REDO
                                         &trans &mo 3 &kp SPACE &trans &trans
                         >;
                 };
