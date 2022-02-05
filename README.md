@@ -1,6 +1,6 @@
 # ZMK Config
 
-_Custom ZMK firmware configuration for a Reviung41 keyboard_
+_Custom [ZMK](https://github.com/zmkfirmware/zmk) firmware configuration for a Reviung41 keyboard_
 
 ## Just my type
 
