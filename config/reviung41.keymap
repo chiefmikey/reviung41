@@ -35,7 +35,7 @@
 //                                     |      |     | SPC     |      |      |
                         bindings = <
    &trans &kp N1    &kp N2      &kp N3   &kp N4   &kp N5      &kp N6   &kp MINUS &kp PLUS  &kp LPAR  &kp RPAR &kp BSPC
-   &trans &kp MINUS &kp KP_PLUS &kp LBRC &kp RBRC &kp PIPE    &kp LEFT &kp DOWN  &kp UP    &kp LBKT  &kp RBKT &kp BACKSLASH
+   &trans &kp MINUS &kp KP_PLUS &kp LBRC &kp RBRC &kp PIPE    &kp LEFT &kp DOWN  &kp UP    &kp LBKT  &kp RBKT &kp BSLH
    &trans &kp ESC   &kp LGUI    &kp LALT &kp CLCK &kp DQT     &kp HOME &kp END   &kp PG_UP &kp MINUS &kp PLUS &kp RIGHT
                                         &trans &mo 3 &kp SPACE &trans &trans
                         >;
