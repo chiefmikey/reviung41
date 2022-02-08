@@ -20,10 +20,10 @@
 // |  SHFT(TAB)   |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,      |  .    |  /     |  SHFT(RET)  |
 //                         |  ALT       |  LWR      |  SPC     |  RSE    |  ALT     |
                         bindings = <
-   &kp ESC         &kp Q &kp W &kp E &kp R &kp T     &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &mt LCTRL GRAVE &kp A &kp S &kp D &kp F &kp G     &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &mt LSHFT LEFT  &kp Z &kp X &kp C &kp V &kp B     &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &mt RSHFT RIGHT
-                           &mt LGUI UP &mt LALT SPACE &lt 3 RET &lt 1 SPACE &lt 2 DOWN
+   &kp ESC         &kp Q &kp W &kp E &kp R &kp T    &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
+   &mt LCTRL GRAVE &kp A &kp S &kp D &kp F &kp G    &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+   &mt LSHFT LEFT  &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &mt RSHFT RIGHT
+                &mt LGUI UP &mt LALT SPACE &lt 3 RET &lt 1 SPACE &lt 2 DOWN
                         >;
                 };
 
@@ -34,10 +34,10 @@
 // |     |  ESC    |  GUI      |  ALT   |  CAPS  |  "     |  |  HOME  |  END    |  PGUP   |  PGDN   |  PRSC  |  SHFT(RET) |
 //                                     |      |     |  SPC    |      |      |
                         bindings = <
-   &kp N1    &kp N2      &kp N3   &kp N4   &kp N5      &kp N6    &kp N7    &kp N8    &kp N9 &kp N0  &kp MINUS   &trans
-   &kp TAB  &kp AMPS &kp HASH &kp LBRC &kp LBKT &kp LPAR    &kp RPAR &kp RBKT &kp RBRC  &kp EQUAL &kp UP &kp BSLH
-   &trans  &kp AT   &kp STAR    &kp LALT &kp CLCK &kp DQT     &kp HOME  &kp END   &kp PG_UP &kp LEFT &kp DOWN &trans
-                                        &kp LCTRL &trans &trans &trans &trans
+   &kp N1  &kp N2   &kp N3   &kp N4   &kp N5   &kp N6      &kp N7   &kp N8   &kp N9    &kp N0    &kp MINUS &trans
+   &kp TAB &kp AMPS &kp HASH &kp LBRC &kp LBKT &kp LPAR    &kp RPAR &kp RBKT &kp RBRC  &kp EQUAL &kp UP    &kp BSLH
+   &trans  &kp AT   &kp STAR &kp LALT &kp CLCK &kp DQT     &kp HOME &kp END  &kp PG_UP &kp LEFT  &kp DOWN  &trans
+                                     &kp LCTRL &trans &trans &trans &trans
                         >;
                 };
 
@@ -51,7 +51,7 @@
    &trans &kp N1     &kp N2    &kp N3    &kp N4    &kp N5      &kp N6 &kp LPAR &kp RPAR &kp MINUS  &kp PLUS     &kp C_PLAY_PAUSE
    &trans  &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT  &kp BSLH    &kp F1 &kp F2   &kp F3   &kp F4     &kp C_VOL_UP &kp F6
    &trans  &kp ESC   &kp LGUI  &kp RALT  &kp CLCK  &kp DQT     &kp F7 &kp F8   &kp F9   &kp C_PREV &kp C_VOL_DN &kp C_NEXT
-                                &trans      &trans       &trans        &trans      &trans
+                                            &trans &trans &trans &trans &trans
                         >;
                 };
 
