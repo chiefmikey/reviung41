@@ -4,4 +4,4 @@ _Custom [ZMK](https://github.com/zmkfirmware/zmk) firmware configuration for a R
 
 ## Just my type
 
-Push updates and download resulting firmware zip artifact output in Actions
+Push updates and download resulting firmware zip artifact in Actions output
