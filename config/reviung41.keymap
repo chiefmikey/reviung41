@@ -35,8 +35,8 @@
 // |     |  ESC    |  GUI      |  ALT   |  CAPS  |  "     |  |  HOME  |  END    |  PGUP   |  PGDN   |  PRSC  |  SHFT(RET) |
 //                                     |      |     |  SPC    |      |      |
                         bindings = <
-   &kp N1  &kp N2   &kp N3   &kp N4    &kp N5   &kp N6      &kp N7    &kp N8   &kp N9    &kp N0    &kp MINUS &trans
-   &kp TAB &kp AT   &kp DLLR &kp LBKT  &kp LPAR &kp LBRC    &kp RBRC  &kp RPAR &kp RBKT  &kp EQUAL &kp UP    &kp BSLH
+   &kp N1  &kp N2   &kp N3   &kp N4    &kp N5   &kp N6      &kp N7    &kp N8   &kp N9    &kp N0    &kp EQUAL &trans
+   &kp TAB &kp AT   &kp DLLR &kp LBKT  &kp LPAR &kp LBRC    &kp RBRC  &kp RPAR &kp RBKT  &kp MINUS &kp UP    &kp BSLH
    &trans  &kp AMPS &kp HASH &kp PRCNT &kp EXCL &kp PLUS    &kp CARET &trans   &kp PG_UP &kp LEFT  &kp DOWN  &kp RIGHT
                                      &kp STAR &trans &trans &trans &trans
                         >;
