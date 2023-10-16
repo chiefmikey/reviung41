@@ -141,10 +141,8 @@ jobs:
         run: |
           git config --global user.name "Mikl Wolfe"
           git config --global user.email "wolfemikl@gmail.com"
-          echo 1 $(ls -a)
-          echo 2 $(ls -a /)
           cp /firmware.zip firmware.zip
-          echo 3 $(ls -a)
+          chown "${USER}":"${USER}" firmware.zip
           git add firmware.zip
           git commit -m "chore(firmware): update"
           git push origin main
