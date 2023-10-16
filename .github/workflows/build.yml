@@ -100,6 +100,7 @@ jobs:
         run: grep -v -e "^#" -e "^$" build/zephyr/.config | sort
 
       - name: Rename artifacts
+        id: rename-artifacts
         shell: sh -x {0}
         run: |
           mkdir build/artifacts
@@ -114,6 +115,7 @@ jobs:
           fi
 
       - name: Update Artifacts
+        if: steps.rename-artifacts.outcome == 'success'
         env:
           GITHUB_TOKEN: ${{ secrets.UPDATE_PACKAGE }}
         run: |
@@ -128,6 +130,7 @@ jobs:
           git push origin main || true
 
       - name: Archive Artifacts
+        if: steps.rename-artifacts.outcome == 'success'
         uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.archive_name }}
