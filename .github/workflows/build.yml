@@ -1,25 +1,25 @@
-name: Reusable user config build
+name: Build Config
 
 on:
   workflow_dispatch:
     inputs:
       build_matrix_path:
-        description: "Path to the build matrix file"
-        default: "reviung/build.yaml"
+        description: "Matrix Path"
+        default: "reviung41/build.yaml"
         required: false
         type: string
       config_path:
-        description: "Path to the config directory"
-        default: "reviung41/config"
+        description: "Config Path"
+        default: "reviung41/config/reviung41.conf"
         required: false
         type: string
       fallback_binary:
-        description: "Fallback binary format, if no *.uf2 file was built"
+        description: "Fallback Format"
         default: "bin"
         required: false
         type: string
       archive_name:
-        description: "Archive output file name"
+        description: "Archive Name"
         default: "firmware"
         required: false
         type: string
