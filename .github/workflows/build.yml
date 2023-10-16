@@ -121,7 +121,7 @@ jobs:
             zip -r /firmware.zip "/${{ env.artifact_name }}.uf2"
           [ -f "/${{ env.artifact_name }}.${{ inputs.fallback_binary }}" ] &&
             zip -r /firmware.zip "/${{ env.artifact_name }}.${{ inputs.fallback_binary }}"
-          exit 0
+          cd /
 
       - name: Archive Artifacts
         if: steps.rename-artifacts.outcome == 'success'
