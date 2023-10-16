@@ -32,7 +32,7 @@ jobs:
       build_matrix: ${{ env.build_matrix }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install yaml2json
         run: python3 -m pip install remarshal
@@ -63,7 +63,7 @@ jobs:
           echo "artifact_name=${shield:+$shield-}${{ matrix.board }}-zmk" >> $GITHUB_ENV
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Cache west modules
         uses: actions/cache@v3.0.11
