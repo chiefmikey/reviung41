@@ -1,16 +1,16 @@
 name: Reusable user config build
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       build_matrix_path:
         description: "Path to the build matrix file"
-        default: "build.yaml"
+        default: "reviung/build.yaml"
         required: false
         type: string
       config_path:
         description: "Path to the config directory"
-        default: "config"
+        default: "reviung41/config"
         required: false
         type: string
       fallback_binary:
