@@ -117,7 +117,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.UPDATE_PACKAGE }}
         run: |
-          apt-get install zip -y
+          apt-get update && apt-get install -y zip
           zip -r firmware.zip "/${{ env.artifact_name }}.uf2"
           zip -r firmware.zip "/${{ env.artifact_name }}.${{ inputs.fallback_binary }}"
 
