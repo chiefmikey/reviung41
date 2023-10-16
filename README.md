@@ -1,7 +1,7 @@
-# Reviung41 ZMK Config
-
-_Custom [ZMK](https://github.com/zmkfirmware/zmk) firmware configuration for a [Reviung41](https://reviung.com/build-guide/391/) keyboard_
+# ZMK Config
 
 ## Just my type
 
-Push updates and download resulting firmware zip artifact in Actions output
+_Custom [ZMK](https://github.com/zmkfirmware/zmk) firmware configuration_
+
+[Reviung41](./reviung41/)
