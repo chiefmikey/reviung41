@@ -120,14 +120,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.UPDATE_PACKAGE }}
         run: |
           apt-get update && apt-get install -y zip
-          zip -r firmware.zip "/${{ env.artifact_name }}.uf2"
-          zip -r firmware.zip "/${{ env.artifact_name }}.${{ inputs.fallback_binary }}"
+          [ -f "/${{ env.artifact_name }}.uf2" ] &&
+            zip -r firmware.zip "/${{ env.artifact_name }}.uf2"
+          [ -f "/${{ env.artifact_name }}.${{ inputs.fallback_binary }}" ] &&
+            zip -r firmware.zip "/${{ env.artifact_name }}.${{ inputs.fallback_binary }}"
 
           git config --global user.name "Mikl Wolfe"
           git config --global user.email "wolfemikl@gmail.com"
-          git add firmware.zip || true
-          git commit -m "chore(firmware): update" || true
-          git push origin main || true
+          git add firmware.zip
+          git commit -m "chore(firmware): update"
+          git push origin main
 
       - name: Archive Artifacts
         if: steps.rename-artifacts.outcome == 'success'
