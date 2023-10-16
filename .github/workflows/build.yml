@@ -1,7 +1,7 @@
 name: Build Config
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       build_matrix_path:
         description: "Matrix Path"
