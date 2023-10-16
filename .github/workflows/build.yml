@@ -141,8 +141,8 @@ jobs:
         run: |
           git config --global user.name "Mikl Wolfe"
           git config --global user.email "wolfemikl@gmail.com"
+          git config --global --add safe.directory /__w/reviung41/reviung41
           cp /firmware.zip firmware.zip
-          chown "${USER}":"${USER}" firmware.zip
           git add firmware.zip
           git commit -m "chore(firmware): update"
           git push origin main
