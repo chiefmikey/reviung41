@@ -141,10 +141,11 @@ jobs:
         run: |
           git config --global user.name "Mikl Wolfe"
           git config --global user.email "wolfemikl@gmail.com"
+          git config --global user.signingkey "${{ secrets.GPG_KEY_ID }}"
           git config --global --add safe.directory /__w/reviung41/reviung41
           cp /firmware.zip firmware.zip
           git add firmware.zip
-          git commit -m "chore(firmware): update"
+          git commit -m "chore(firmware): update" --gpg-sign
           git push origin main
 
 
