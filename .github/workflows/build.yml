@@ -102,31 +102,32 @@ jobs:
       - name: Rename artifacts
         shell: sh -x {0}
         run: |
-          sudo apt install zip -y
           mkdir build/artifacts
           if [ -f build/zephyr/zmk.uf2 ]
           then
             cp build/zephyr/zmk.uf2 "build/artifacts/${{ env.artifact_name }}.uf2"
             cp build/zephyr/zmk.uf2 "/${{ env.artifact_name }}.uf2"
-            zip -r firmware.zip "/${{ env.artifact_name }}.uf2"
           elif [ -f build/zephyr/zmk.${{ inputs.fallback_binary }} ]
           then
             cp "build/zephyr/zmk.${{ inputs.fallback_binary }}" "build/artifacts/${{ env.artifact_name }}.${{ inputs.fallback_binary }}"
             cp "build/zephyr/zmk.${{ inputs.fallback_binary }}" "/${{ env.artifact_name }}.${{ inputs.fallback_binary }}"
-            zip -r firmware.zip "/${{ env.artifact_name }}.${{ inputs.fallback_binary }}"
           fi
 
-      - name: Update Firmware Zip
+      - name: Update Artifacts
         env:
           GITHUB_TOKEN: ${{ secrets.UPDATE_PACKAGE }}
         run: |
+          apt install zip -y
+          zip -r firmware.zip "/${{ env.artifact_name }}.uf2"
+          zip -r firmware.zip "/${{ env.artifact_name }}.${{ inputs.fallback_binary }}"
+
           git config --global user.name "Mikl Wolfe"
           git config --global user.email "wolfemikl@gmail.com"
           git add firmware.zip || true
           git commit -m "chore(firmware): update" || true
           git push origin main || true
 
-      - name: Archive (${{ env.display_name }})
+      - name: Archive Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.archive_name }}
