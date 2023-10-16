@@ -102,7 +102,7 @@ jobs:
       - name: Rename artifacts
         shell: sh -x {0}
         run: |
-          apt install -y zip
+          sudo apt install zip -y
           mkdir build/artifacts
           if [ -f build/zephyr/zmk.uf2 ]
           then
