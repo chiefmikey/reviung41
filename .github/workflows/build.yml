@@ -116,6 +116,8 @@ jobs:
           fi
 
       - name: Update Firmware Zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.UPDATE_PACKAGE }}
         run: |
           git config --global user.name "Mikl Wolfe"
           git config --global user.email "wolfemikl@gmail.com"
