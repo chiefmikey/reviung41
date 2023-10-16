@@ -1,7 +1,5 @@
-# ZMK Config
+# Just My Type
+
+## Reviung41
 
 _Custom [ZMK](https://github.com/zmkfirmware/zmk) firmware configuration_
-
-## Just my type
-
-[Reviung41](./reviung41/)
