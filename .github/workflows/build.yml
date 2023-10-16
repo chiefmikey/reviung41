@@ -1,16 +1,16 @@
 name: Build Config
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       build_matrix_path:
         description: "Matrix Path"
-        default: "reviung41/build.yaml"
+        default: "build.yaml"
         required: false
         type: string
       config_path:
         description: "Config Path"
-        default: "reviung41/config"
+        default: "config"
         required: false
         type: string
       fallback_binary:
@@ -83,12 +83,14 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: West
-        run: |
-          west init -l "${{ inputs.config_path }}"
-          cd reviung41
-          west update
-          west zephyr-export
+      - name: West Init
+        run: west init -l "${{ inputs.config_path }}"
+
+      - name: West Update
+        run: west update
+
+      - name: West Zephyr export
+        run: west zephyr-export
 
       - name: West Build (${{ env.display_name }})
         shell: sh -x {0}
