@@ -86,7 +86,8 @@ jobs:
       - name: West
         run: |
           west init -l "${{ inputs.config_path }}"
-          west update -l "/__w/zmk-config/zmk-config/reviung41"
+          cd reviung41
+          west update
           west zephyr-export
 
       - name: West Build (${{ env.display_name }})
