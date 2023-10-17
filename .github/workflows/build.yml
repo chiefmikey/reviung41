@@ -113,6 +113,9 @@ jobs:
         if: steps.rename-artifacts.outcome == 'success'
         uses: actions/checkout@v4
 
+      - name: CD
+        run: cd reviung41
+
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v6
         with:
