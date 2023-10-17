@@ -100,6 +100,7 @@ jobs:
             zip -r /firmware.zip "/${{ env.artifact_name }}.uf2"
           [ -f "/${{ env.artifact_name }}.bin" ] &&
             zip -r /firmware.zip "/${{ env.artifact_name }}.bin"
+          cd /__w/reviung41/reviung41
           exit 0
 
       - name: Archive Artifacts
@@ -112,9 +113,6 @@ jobs:
       - name: Checkout
         if: steps.rename-artifacts.outcome == 'success'
         uses: actions/checkout@v4
-
-      - name: CD
-        run: cd /__w/reviung41/reviung41
 
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v6
