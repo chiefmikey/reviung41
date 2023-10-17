@@ -134,6 +134,14 @@ jobs:
         if: steps.rename-artifacts.outcome == 'success'
         uses: actions/checkout@v4
 
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_KEY_ID }}
+          passphrase: ${{ secrets.GPG_PASS }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
       - name: Update Artifacts
         if: steps.rename-artifacts.outcome == 'success'
         env:
@@ -141,11 +149,10 @@ jobs:
         run: |
           git config --global user.name "Mikl Wolfe"
           git config --global user.email "wolfemikl@gmail.com"
-          git config --global user.signingkey "${{ secrets.GPG_KEY_ID }}"
           git config --global --add safe.directory /__w/reviung41/reviung41
           cp /firmware.zip firmware.zip
           git add firmware.zip
-          git commit -m "chore(firmware): update" --gpg-sign
+          git commit -S -m "chore(firmware): update"
           git push origin main
 
 
