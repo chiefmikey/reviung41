@@ -1,28 +1,7 @@
 name: Build Config
 
 on:
-  workflow_dispatch:
-    inputs:
-      build_matrix_path:
-        description: "Matrix Path"
-        default: "build.yaml"
-        required: false
-        type: string
-      config_path:
-        description: "Config Path"
-        default: "config"
-        required: false
-        type: string
-      fallback_binary:
-        description: "Fallback Format"
-        default: "bin"
-        required: false
-        type: string
-      archive_name:
-        description: "Archive Name"
-        default: "firmware"
-        required: false
-        type: string
+  workflow_dispatch: {}
 
 jobs:
   matrix:
@@ -39,8 +18,8 @@ jobs:
 
       - name: Fetch Build Matrix
         run: |
-          echo "build_matrix=$(yaml2json '${{ inputs.build_matrix_path }}' | jq -c .)" >> $GITHUB_ENV
-          yaml2json "${{ inputs.build_matrix_path }}" | jq
+          echo "build_matrix=$(yaml2json build.yaml | jq -c .)" >> $GITHUB_ENV
+          yaml2json "build.yaml" | jq
 
   build:
     runs-on: ubuntu-latest
@@ -84,7 +63,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: West Init
-        run: west init -l "${{ inputs.config_path }}"
+        run: west init -l "config"
 
       - name: West Update
         run: west update
@@ -94,7 +73,7 @@ jobs:
 
       - name: West Build (${{ env.display_name }})
         shell: sh -x {0}
-        run: west build -s zmk/app -b "${{ matrix.board }}" -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/${{ inputs.config_path }}" ${{ env.extra_cmake_args }} ${{ matrix.cmake-args }}
+        run: west build -s zmk/app -b "${{ matrix.board }}" -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" ${{ env.extra_cmake_args }} ${{ matrix.cmake-args }}
 
       - name: ${{ env.display_name }} Kconfig file
         run: grep -v -e "^#" -e "^$" build/zephyr/.config | sort
@@ -108,10 +87,10 @@ jobs:
           then
             cp build/zephyr/zmk.uf2 "build/artifacts/${{ env.artifact_name }}.uf2"
             cp build/zephyr/zmk.uf2 "/${{ env.artifact_name }}.uf2"
-          elif [ -f build/zephyr/zmk.${{ inputs.fallback_binary }} ]
+          elif [ -f build/zephyr/zmk.bin ]
           then
-            cp "build/zephyr/zmk.${{ inputs.fallback_binary }}" "build/artifacts/${{ env.artifact_name }}.${{ inputs.fallback_binary }}"
-            cp "build/zephyr/zmk.${{ inputs.fallback_binary }}" "/${{ env.artifact_name }}.${{ inputs.fallback_binary }}"
+            cp "build/zephyr/zmk.bin" "build/artifacts/${{ env.artifact_name }}.bin"
+            cp "build/zephyr/zmk.bin" "/${{ env.artifact_name }}.bin"
           fi
 
       - name: Zip Artifacts
@@ -119,15 +98,15 @@ jobs:
           apt-get update && apt-get install -y zip
           [ -f "/${{ env.artifact_name }}.uf2" ] &&
             zip -r /firmware.zip "/${{ env.artifact_name }}.uf2"
-          [ -f "/${{ env.artifact_name }}.${{ inputs.fallback_binary }}" ] &&
-            zip -r /firmware.zip "/${{ env.artifact_name }}.${{ inputs.fallback_binary }}"
+          [ -f "/${{ env.artifact_name }}.bin" ] &&
+            zip -r /firmware.zip "/${{ env.artifact_name }}.bin"
           exit 0
 
       - name: Archive Artifacts
         if: steps.rename-artifacts.outcome == 'success'
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ inputs.archive_name }}
+          name: firmware
           path: build/artifacts
 
       - name: Checkout
