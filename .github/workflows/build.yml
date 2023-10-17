@@ -95,7 +95,7 @@ jobs:
 
       - name: Zip Artifacts
         run: |
-          apt-get update && apt-get install -y zip gpg
+          apt-get update && apt-get install -y zip gnupg
           [ -f "/${{ env.artifact_name }}.uf2" ] &&
             zip -r /firmware.zip "/${{ env.artifact_name }}.uf2"
           [ -f "/${{ env.artifact_name }}.bin" ] &&
