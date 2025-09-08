@@ -5,10 +5,13 @@ This directory contains the ZMK (Zephyr-based keyboard firmware) configuration f
 ## 🎹 Keymap Features
 
 - **4-Layer Layout**: Base, Lower, Raise, and Adjust layers
-- **Macro Support**: Email macro and custom behaviors
-- **RGB Lighting**: Full RGB underglow support
+- **App Launching**: iTerm2, VS Code, Chrome, Slack, Spotify via Cmd+Option+key
+- **Screenshot Shortcuts**: Screenshot selection and area capture
+- **Email Shortcut**: Quick email insertion
+- **RGB Lighting**: Full RGB underglow support with animations
 - **Bluetooth**: Wireless support for nice!nano v2
 - **Mod Taps**: Smart layer switching with hold/tap functionality
+- **Custom Macros**: Specialized functions for productivity
 
 ## 📁 File Structure
 
@@ -58,8 +61,8 @@ zmk/
    ```bash
    # Flash left side
    west flash -d build/left
-   
-   # Flash right side  
+
+   # Flash right side
    west flash -d build/right
    ```
 
@@ -88,7 +91,7 @@ Numbers, symbols, and special characters
 Function keys, media controls, and RGB controls
 
 #### Adjust Layer
-Bluetooth management, RGB controls, and system settings
+App launching, screenshot shortcuts, email macro, and system controls
 
 ## 🎨 Customization
 
