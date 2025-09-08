@@ -1,5 +1,35 @@
-node_modules
+# ZMK build artifacts
+build/
+firmware/
+*.uf2
+*.hex
+*.bin
+
+# Zephyr build artifacts
+zephyr/
+.cache/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+.ninja_deps
+.ninja_log
+build.ninja
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
 .DS_Store
-.vscode
-.env
-dist
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
