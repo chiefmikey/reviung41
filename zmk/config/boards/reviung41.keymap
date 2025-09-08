@@ -1,6 +1,19 @@
 /*
+ * Reviung41 ChiefMikey Keymap - ZMK Configuration
+ * 
+ * A comprehensive keymap for the Reviung41 split keyboard featuring:
+ * - 4-layer layout (Base, Lower, Raise, Adjust)
+ * - App launching shortcuts (iTerm2, VS Code, Chrome, Slack, Spotify)
+ * - Screenshot shortcuts (selection and area capture)
+ * - Email macro for quick insertion
+ * - RGB lighting controls with animations
+ * - Bluetooth support for wireless operation
+ * - Optimized for macOS productivity workflows
+ * 
+ * Hardware: Reviung41 with nice!nano v2 (RP2040)
+ * Firmware: ZMK
+ * 
  * Copyright (c) 2020 The ZMK Contributors
- *
  * SPDX-License-Identifier: MIT
  */
 
@@ -17,6 +30,8 @@
 
 / {
     macros {
+        // Email macro - sends placeholder email address
+        // Customize the email address in the bindings below
         email: email {
             label = "email";
             compatible = "zmk,behavior-macro";
@@ -33,6 +48,7 @@
                 ;
         };
 
+        // Screenshot selection macro - macOS Cmd+Shift+4
         sc_select: sc_select {
             label = "sc_select";
             compatible = "zmk,behavior-macro";
@@ -46,6 +62,7 @@
                 ;
         };
 
+        // Screenshot area macro - macOS Cmd+Shift+5
         sc_area: sc_area {
             label = "sc_area";
             compatible = "zmk,behavior-macro";
@@ -59,6 +76,7 @@
                 ;
         };
 
+        // Screenshot area with enter macro - macOS Cmd+Shift+5+Enter
         sc_area2: sc_area2 {
             label = "sc_area2";
             compatible = "zmk,behavior-macro";
@@ -73,6 +91,8 @@
                 ;
         };
 
+        // App launching macros - require Cmd+Option+key shortcuts in macOS System Preferences
+        // Launch iTerm2 - Cmd+Option+I
         iterm2: iterm2 {
             label = "iterm2";
             compatible = "zmk,behavior-macro";
@@ -86,6 +106,7 @@
                 ;
         };
 
+        // Launch VS Code - Cmd+Option+V
         vscode: vscode {
             label = "vscode";
             compatible = "zmk,behavior-macro";
@@ -99,6 +120,7 @@
                 ;
         };
 
+        // Launch Chrome - Cmd+Option+C
         chrome: chrome {
             label = "chrome";
             compatible = "zmk,behavior-macro";
@@ -112,6 +134,7 @@
                 ;
         };
 
+        // Launch Slack - Cmd+Option+L
         slack: slack {
             label = "slack";
             compatible = "zmk,behavior-macro";
@@ -125,6 +148,7 @@
                 ;
         };
 
+        // Launch Spotify - Cmd+Option+S
         spotify: spotify {
             label = "spotify";
             compatible = "zmk,behavior-macro";
