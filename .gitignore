@@ -1,9 +1,15 @@
 # ZMK build artifacts
-build/
-firmware/
+zmk/build/
+zmk/firmware/
 *.uf2
 *.hex
 *.bin
+
+# QMK build artifacts
+qmk/.build/
+qmk/*.hex
+qmk/*.bin
+qmk/*.uf2
 
 # Zephyr build artifacts
 zephyr/
