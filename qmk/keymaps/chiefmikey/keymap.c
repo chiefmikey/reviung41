@@ -47,7 +47,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case EMAIL:
             if (record->event.pressed) {
                 // Just type the email directly
-                SEND_STRING("wolfemikl@gmail.com");
+                SEND_STRING("your.email@example.com");
             }
             break;
 

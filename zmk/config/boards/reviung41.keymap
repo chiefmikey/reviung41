@@ -24,11 +24,10 @@
             tap-ms = <5>;
             #binding-cells = <0>;
             bindings
-                = <&macro_tap &kp F &kp A &kp B &kp I &kp A &kp N>
-                , <&macro_tap &kp DOT>
-                , <&macro_tap &kp G &kp E &kp B &kp H &kp A &kp R &kp T>
+                = <&macro_tap &kp Y &kp O &kp U &kp R &kp DOT>
+                , <&macro_tap &kp E &kp M &kp A &kp I &kp L>
                 , <&macro_tap &kp AT>
-                , <&macro_tap &kp G &kp M &kp A &kp I &kp L>
+                , <&macro_tap &kp E &kp X &kp A &kp M &kp P &kp L &kp E>
                 , <&macro_tap &kp DOT>
                 , <&macro_tap &kp C &kp O &kp M>
                 ;

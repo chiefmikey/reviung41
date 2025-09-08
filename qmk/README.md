@@ -1,16 +1,17 @@
-# Reviung41 - ChiefMikey Keymap
+# QMK Configuration for Reviung41
 
-This is the Reviung41 version of the ChiefMikey keymap, adapted from the Unicorne split keyboard layout.
+This directory contains the QMK (Quantum Mechanical Keyboard) configuration for the Reviung41 split keyboard with the ChiefMikey keymap.
 
-## Features
+## 🎹 Keymap Features
 
-- **Same layout as Unicorne**: Adapted for single-board Reviung41
-- **App launching**: iTerm2, VS Code, Chrome, Slack, Spotify via Cmd+Option+key
-- **Screenshot shortcuts**: Screenshot selection and area capture
-- **Email shortcut**: Quick email insertion
-- **RGB lighting**: Full RGB control with animations
-- **Audio feedback**: Click sounds and startup song
-- **Layers**: Base, Lower, Raise, and Adjust layers
+- **4-Layer Layout**: Base, Lower, Raise, and Adjust layers
+- **App Launching**: iTerm2, VS Code, Chrome, Slack, Spotify via Cmd+Option+key
+- **Screenshot Shortcuts**: Screenshot selection and area capture
+- **Email Shortcut**: Quick email insertion
+- **RGB Lighting**: Full RGB Matrix support with animations
+- **Audio Feedback**: Click sounds and startup melodies
+- **Custom Keycodes**: Specialized functions for productivity
+- **Tap Dance**: Mouse button combinations
 
 ## Key Layout
 
