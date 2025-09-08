@@ -1,6 +1,6 @@
 /*
  * Reviung41 ChiefMikey Keymap
- * 
+ *
  * A comprehensive keymap for the Reviung41 split keyboard featuring:
  * - 4-layer layout (Base, Lower, Raise, Adjust)
  * - App launching shortcuts (iTerm2, VS Code, Chrome, Slack, Spotify)
@@ -10,7 +10,7 @@
  * - Audio feedback with click sounds and startup melodies
  * - Media controls and function keys
  * - Optimized for macOS productivity workflows
- * 
+ *
  * Hardware: Reviung41 with nice!nano v2 (RP2040)
  * Firmware: QMK
  */
@@ -80,7 +80,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(SS_LGUI(SS_LSFT("5")));
             }
             break;
-            
+
         case SC_AREA2:
             if (record->event.pressed) {
                 // macOS screenshot area with auto-enter (Cmd+Shift+5+Enter)
@@ -89,35 +89,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(SS_TAP(X_ENTER));
             }
             break;
-            
+
         case ITERM2:
             if (record->event.pressed) {
                 // Launch iTerm2 - requires Cmd+Option+I shortcut in macOS System Preferences
                 SEND_STRING(SS_LGUI(SS_LALT("i")));
             }
             break;
-            
+
         case VSCODE:
             if (record->event.pressed) {
                 // Launch VS Code - requires Cmd+Option+V shortcut in macOS System Preferences
                 SEND_STRING(SS_LGUI(SS_LALT("v")));
             }
             break;
-            
+
         case CHROME:
             if (record->event.pressed) {
                 // Launch Chrome - requires Cmd+Option+C shortcut in macOS System Preferences
                 SEND_STRING(SS_LGUI(SS_LALT("c")));
             }
             break;
-            
+
         case SLACK:
             if (record->event.pressed) {
                 // Launch Slack - requires Cmd+Option+L shortcut in macOS System Preferences
                 SEND_STRING(SS_LGUI(SS_LALT("l")));
             }
             break;
-            
+
         case SPOTIFY:
             if (record->event.pressed) {
                 // Launch Spotify - requires Cmd+Option+S shortcut in macOS System Preferences
