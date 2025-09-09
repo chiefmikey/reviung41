@@ -28,7 +28,7 @@
         }
     },
     "ws2812": {
-        "pin": "D3"
+        "pin": "GPIO3"
     },
     "features": {
         "bootmagic": false,
@@ -46,12 +46,14 @@
         }
     },
     "matrix_pins": {
-        "cols": ["D4", "C6", "D7", "E6", "B4", "B5"],
-        "rows": ["F4", "F5", "F6", "F7", "B1", "B3", "B2"]
+        "cols": ["GPIO4", "GPIO6", "GPIO7", "GPIO8", "GPIO9", "GPIO10"],
+        "rows": ["GPIO12", "GPIO13", "GPIO14", "GPIO15", "GPIO16", "GPIO17", "GPIO18"]
     },
     "diode_direction": "COL2ROW",
-    "processor": "atmega32u4",
-    "bootloader": "caterina",
+    "usb_detect_pin": "GPIO19",
+    "usb_mcu_detect_pin": "GPIO20",
+    "processor": "rp2040",
+    "bootloader": "rp2040",
     "layout_aliases": {
         "LAYOUT_reviung41": "LAYOUT"
     },
