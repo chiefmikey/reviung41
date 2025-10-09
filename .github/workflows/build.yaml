@@ -1,0 +1,37 @@
+name: Build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build Firmware
+    strategy:
+      matrix:
+        include:
+          - board: nice_nano_v2
+            shield: reviung41
+            keymap: default
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        uses: zmkfirmware/zmk-build@stable
+        with:
+          board: ${{ matrix.board }}
+          shield: ${{ matrix.shield }}
+          keymap: ${{ matrix.keymap }}
+
+      - name: Upload Firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.board }}-${{ matrix.shield }}-${{ matrix.keymap }}
+          path: |
+            firmware/*.uf2
+            firmware/*.hex
