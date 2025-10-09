@@ -1,17 +1,14 @@
 /*
- * ChiefMikey's Reviung41 Keymap - ZMK Configuration
+ * Reviung41 ChiefMikey Keymap - ZMK Configuration
  *
- * A custom keymap for the Reviung41 split keyboard featuring:
- * - Colemak-DH base layout with QWERTY fallback
- * - Custom application launchers (macOS shortcuts)
- * - Screenshot utilities
- * - RGB controls and media keys
- *
- * Layers:
- * - default_layer: Main typing layer
- * - lower_layer: Numbers, symbols, and navigation
- * - raise_layer: Function keys, RGB controls, and media
- * - adjust_layer: System functions and app launchers
+ * A comprehensive keymap for the Reviung41 split keyboard featuring:
+ * - 4-layer layout (Base, Lower, Raise, Adjust)
+ * - App launching shortcuts (iTerm2, VS Code, Chrome, Slack, Spotify)
+ * - Screenshot shortcuts (selection and area capture)
+ * - Email macro for quick insertion
+ * - RGB lighting controls with animations
+ * - Bluetooth support for wireless operation
+ * - Optimized for macOS productivity workflows
  *
  * Hardware: Reviung41 with nice!nano v2 (RP2040)
  * Firmware: ZMK
@@ -189,7 +186,7 @@
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6                                &kp N7    &kp N8    &kp N9    &kp N0    &kp EQUAL &kp BSPC
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
-     &kp TAB   &kp AT    &kp DLLR  &kp LBKT  &kp LPAR  &kp LBRC                              &kp RBRC  &kp RPAR  &kp RBKT  &kp MINUS &trans    &trans
+     &kp TAB   &kp AT    &kp DLLR  &kp LBKT  &kp LPAR  &kp LBRC                              &kp RBRC  &kp RPAR  &kp RBKT  &kp MINUS &trans    &kp BSLH
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &kp HOME  &kp AMPS  &kp HASH  &kp PRCNT &kp EXCL  &kp PLUS                              &kp CARET &trans    &trans    &trans    &kp BSLH  &kp DEL
 // |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
@@ -221,7 +218,7 @@
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &trans   &trans    &chrome   &slack    &spotify  &trans                                 &trans &trans    &trans    &trans    &trans    &trans
 // |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
-                                                &kp RGB_TOG &trans    &kp RESET              &kp RGB_HUI &trans    &trans
+                                                &kp RGB_TOG &trans    &kp RESET              &kp RGB_HUI &trans
 //                                             |----------+----------+----------|  |----------+----------+----------|
             >;
         };

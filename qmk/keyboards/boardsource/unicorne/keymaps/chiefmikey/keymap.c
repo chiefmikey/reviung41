@@ -28,6 +28,7 @@ enum layers {
 // Custom keycodes
 enum custom_keycodes {
     EMAIL = SAFE_RANGE,    // Send email address
+    BIT,                   // Send bitwarden string
     SC_SELECT,             // Screenshot selection (Cmd+Shift+4)
     SC_AREA,               // Screenshot area (Cmd+Shift+5)
     SC_AREA2,              // Screenshot area with Enter (Cmd+Shift+5+Enter)
@@ -65,6 +66,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
 
+        case BIT:
+            if (record->event.pressed) {
+                SEND_STRING("644215-341561-007271-388454-339020-202070-542564-646173");
+            }
+            break;
         case SC_SELECT:
             if (record->event.pressed) {
                 // Use direct key combination for screenshot selection
@@ -191,6 +197,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______,_______, SC_SELECT,                EMAIL, _______,   KC_UP, _______, _______, QK_AUDIO_CLICKY_TOGGLE,
     _______, _______, ITERM2, VSCODE, SC_AREA, SC_AREA2,                _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______,
     _______, _______, CHROME, SLACK,  SPOTIFY, _______,                 _______, _______, _______, _______, _______, _______,
-                                RGB_TOG, _______, QK_BOOT,                TD(B1_B2), _______, _______
+                                RGB_TOG, _______, QK_BOOT,                TD(B1_B2), _______, BIT
 ),
 };

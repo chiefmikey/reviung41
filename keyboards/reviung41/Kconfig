@@ -1,0 +1,5 @@
+# Reviung41 ZMK Module
+# This module provides the Reviung41 keyboard configuration for ZMK
+
+# Include the keymap
+include(${CMAKE_CURRENT_SOURCE_DIR}/keymap.dtsi)

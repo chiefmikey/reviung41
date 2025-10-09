@@ -132,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_BSPC,
     MT_LCTL_GRV,   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,
     KC_LSFT,       KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
-                                KC_LGUI, MT_LALT_SPC, LT_ADJ_ENT,            LT_ADJ_ENT, LT_LOWER_SPC
+                                KC_LGUI, MT_LALT_SPC, LT_ADJ_ENT,            LT_LOWER_SPC, LT_RAISE_BSLS
 ),
 /* _LOWER Layer
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -178,12 +178,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |CHROME|SLACK |SPOTIFY|      |-------.    ,-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |RGB_TOG|      |QK_BOOT|      /       \      |RGB_HUI|      |      |
+ *                   |RGB_TOG|      |QK_BOOT|      /       \      |RGB_HUI|      |
  *                   `----------------------'     '---------''----------------------'
  */
 [_ADJUST] = LAYOUT_reviung41(
     _______, _______, _______, _______,_______, SC_SELECT,                EMAIL, _______,   KC_UP, _______, _______, RGB_MOD,
     _______, _______, ITERM2, VSCODE, SC_AREA, SC_AREA2,                _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______,
     _______, _______, CHROME, SLACK,  SPOTIFY, _______,                 _______, _______, _______, _______, _______, _______,
-                                RGB_TOG, _______, QK_BOOT,                RGB_HUI, _______
+                                RGB_TOG, QK_BOOT, _______,                _______, _______
 )};
