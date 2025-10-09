@@ -6,7 +6,6 @@
  * - Custom application launchers (macOS shortcuts)
  * - Screenshot utilities
  * - RGB controls and media keys
- * - Tap dance for mouse buttons
  *
  * Layers:
  * - _BASE: Main typing layer
@@ -38,10 +37,9 @@ enum custom_keycodes {
     SPOTIFY                // Launch Spotify (Cmd+Option+S)
 };
 
-// Tap dance actions - none needed for Reviung41
-// Define empty tap dance actions array for QMK compatibility
+// Tap dance actions - empty array for QMK compatibility
 tap_dance_action_t tap_dance_actions[] = {
-    // No tap dance actions needed for Reviung41
+    // No tap dance actions defined
 };
 
 // Key aliases for readability
