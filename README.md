@@ -23,12 +23,6 @@ Professional keyboard firmware configurations for multiple keyboards, supporting
 keyboards/
 ├── qmk/                    # QMK configurations
 │   └── keyboards/         # Keyboard-specific configs
-│       ├── reviung/       # Reviung41 keyboard
-│       │   └── reviung41/
-│       │       ├── keyboard.json
-│       │       └── keymaps/
-│       │           └── chiefmikey/
-│       │               └── keymap.c
 │       └── boardsource/   # Unicorne keyboard
 │           └── unicorne/
 │               ├── keyboard.json
@@ -47,8 +41,6 @@ keyboards/
 │   │   └── west.yml
 │   ├── build.yaml        # GitHub Actions build config
 │   └── README.md         # ZMK-specific documentation
-├── sync_reviung41.sh     # Sync script for Reviung41
-├── sync_unicorne.sh      # Sync script for Unicorne
 ├── LICENSE               # MIT License
 └── README.md             # This file
 ```
@@ -56,10 +48,10 @@ keyboards/
 ## 🎹 Supported Keyboards
 
 ### Reviung41
-- **QMK**: `qmk/keyboards/reviung/reviung41/`
 - **ZMK**: `zmk/keyboards/reviung41/`
 - **Features**: 4-layer layout, app launchers, RGB lighting
-- **Controllers**: RP2040 (QMK), nice!nano v2 (ZMK)
+- **Controller**: nice!nano v2 (nRF52840)
+- **Status**: ✅ Active (ZMK only)
 
 ### Unicorne
 - **QMK**: `qmk/keyboards/boardsource/unicorne/`
@@ -67,16 +59,6 @@ keyboards/
 - **Controller**: RP2040
 
 ## 🛠️ Quick Start
-
-### QMK (Reviung41)
-```bash
-# Sync configs to QMK directory
-./sync_reviung41.sh
-
-# Build and flash
-qmk compile -kb reviung/reviung41 -km chiefmikey
-qmk flash -kb reviung/reviung41 -km chiefmikey
-```
 
 ### QMK (Unicorne)
 ```bash
@@ -90,11 +72,15 @@ qmk flash -kb boardsource/unicorne -km chiefmikey
 
 ### ZMK (Reviung41)
 ```bash
-# Build locally
-cd zmk
-west build -p -d build/reviung41 -b nice_nano_v2 -- -DZMK_CONFIG="$(pwd)/config" -DKEYMAP_FILE="$(pwd)/keyboards/reviung41/keymap.dtsi"
+# Build via GitHub Actions (Recommended)
+git push  # Triggers automatic build
 
-# Or use GitHub Actions for automatic builds
+# Download firmware from GitHub Actions artifacts
+# Flash the .uf2 file to your Reviung41
+
+# Or build locally (Advanced)
+cd zmk
+west build -p -d build/reviung41 -b nice_nano_v2 -- -DZMK_CONFIG="$(pwd)/config"
 ```
 
 ## 📖 Documentation
@@ -106,10 +92,11 @@ west build -p -d build/reviung41 -b nice_nano_v2 -- -DZMK_CONFIG="$(pwd)/config"
 
 This repository uses sync scripts to copy configurations to the global QMK directory:
 
-- **`sync_reviung41.sh`**: Syncs Reviung41 configs to `~/qmk_firmware/keyboards/reviung/reviung41/`
 - **`sync_unicorne.sh`**: Syncs Unicorne configs to `~/qmk_firmware/keyboards/boardsource/unicorne/`
 
 This approach keeps the global QMK directory clean while allowing all configurations to be tracked in this repository.
+
+**Note**: Reviung41 uses ZMK firmware with GitHub Actions for automatic builds, so no sync script is needed.
 
 ## 🤝 Contributing
 

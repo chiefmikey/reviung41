@@ -13,8 +13,7 @@
         "nkro": true,
         "oled": true,
         "pointing_device": true,
-        "rgb_matrix": true,
-        "tap_dance": true
+        "rgb_matrix": true
     },
     "indicators": {
         "caps": "GP24"
