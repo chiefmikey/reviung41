@@ -11,27 +11,33 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Build Firmware
-    strategy:
-      matrix:
-        include:
-          - board: nice_nano_v2
-            shield: reviung41
-            keymap: default
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build
-        uses: zmkfirmware/zmk-build@stable
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          board: ${{ matrix.board }}
-          shield: ${{ matrix.shield }}
-          keymap: ${{ matrix.keymap }}
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install west
+
+      - name: Setup ZMK
+        run: |
+          west init -m https://github.com/zmkfirmware/zmk.git --mr main .
+          west update
+          west zephyr-export
+
+      - name: Build
+        run: |
+          west build -p -b nice_nano_v2 -d build/nice_nano_v2/reviung41 -s zmk/app -- -DZMK_CONFIG="$(pwd)/config" -DSHIELD=reviung41 -DKEYMAP=default
 
       - name: Upload Firmware
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.board }}-${{ matrix.shield }}-${{ matrix.keymap }}
+          name: nice_nano_v2-reviung41-default
           path: |
-            firmware/*.uf2
-            firmware/*.hex
+            build/nice_nano_v2/reviung41/zephyr/*.uf2
+            build/nice_nano_v2/reviung41/zephyr/*.hex
