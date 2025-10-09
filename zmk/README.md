@@ -1,127 +1,67 @@
-# ZMK Configuration for Reviung41
+# ZMK Keyboards
 
-This directory contains the ZMK (Zephyr-based keyboard firmware) configuration for the Reviung41 split keyboard.
+This directory contains ZMK firmware configurations for various keyboards.
 
-## 🎹 Keymap Features
-
-- **4-Layer Layout**: Base, Lower, Raise, and Adjust layers
-- **App Launching**: iTerm2, VS Code, Chrome, Slack, Spotify via Cmd+Option+key
-- **Screenshot Shortcuts**: Screenshot selection and area capture
-- **Email Shortcut**: Quick email insertion
-- **RGB Lighting**: Full RGB underglow support with animations
-- **Bluetooth**: Wireless support for nice!nano v2
-- **Mod Taps**: Smart layer switching with hold/tap functionality
-- **Custom Macros**: Specialized functions for productivity
-
-## 📁 File Structure
+## Structure
 
 ```
 zmk/
-├── config/
-│   ├── boards/
-│   │   └── reviung41.keymap    # Main keymap definition
-│   ├── reviung41.conf          # ZMK configuration settings
-│   └── west.yml                # Zephyr workspace configuration
-├── .github/
-│   └── workflows/
-│       └── build.yml           # GitHub Actions build workflow
-├── build.yaml                  # Build matrix configuration
-└── README.md                   # This file
+├── keyboards/           # Keyboard-specific configurations
+│   └── reviung41/      # Reviung41 keyboard
+│       └── keymap.dtsi # Keymap definition
+├── config/             # Global ZMK configuration
+│   ├── reviung41.conf  # Reviung41-specific config
+│   └── west.yml        # ZMK dependencies
+└── build.yaml          # GitHub Actions build configuration
 ```
 
-## 🚀 Quick Start
+## Reviung41
 
-### Prerequisites
-- [ZMK development environment](https://zmk.dev/docs/development/setup)
-- Git
-- Python 3.6+
+The Reviung41 configuration mirrors the QMK keymap as closely as possible while respecting ZMK's capabilities and the Reviung41's hardware constraints.
 
-### Building Locally
+### Features
 
-1. **Clone the repository**
+- **4-layer layout**: Base, Lower, Raise, Adjust
+- **App launchers**: iTerm2, VS Code, Chrome, Slack, Spotify
+- **Screenshot utilities**: Selection and area capture
+- **Email macro**: Quick insertion of wolfemikl@gmail.com
+- **RGB controls**: Lighting and mode cycling
+- **Bluetooth support**: Wireless operation
+- **macOS optimized**: All shortcuts work with macOS
+
+### Usage
+
+1. **Build locally**:
    ```bash
-   git clone https://github.com/chiefmikey/reviung41.git
-   cd reviung41/zmk
+   cd zmk
+   west build -p -d build/reviung41 -b nice_nano_v2 -- -DZMK_CONFIG="$(pwd)/config" -DKEYMAP_FILE="$(pwd)/keyboards/reviung41/keymap.dtsi"
    ```
 
-2. **Initialize Zephyr workspace**
-   ```bash
-   west init -l config
-   west update
-   west zephyr-export
-   ```
+2. **Build via GitHub Actions**:
+   - Push changes to trigger automatic builds
+   - Download firmware from Actions artifacts
 
-3. **Build the firmware**
-   ```bash
-   west build -p -d build/left -b nice_nano_v2 -- -DZMK_CONFIG="$(pwd)/config" -DSHIELD=reviung41_left
-   west build -p -d build/right -b nice_nano_v2 -- -DZMK_CONFIG="$(pwd)/config" -DSHIELD=reviung41_right
-   ```
+### Key Differences from QMK
 
-4. **Flash the firmware**
-   ```bash
-   # Flash left side
-   west flash -d build/left
+- **ZMK syntax**: Uses DeviceTree syntax instead of C macros
+- **Macro definitions**: Defined in DeviceTree format
+- **Layer naming**: Uses `default_layer`, `lower_layer`, etc.
+- **RGB controls**: Uses ZMK-specific RGB keycodes
+- **No audio**: Reviung41 doesn't support audio in ZMK
 
-   # Flash right side
-   west flash -d build/right
-   ```
+## Adding New Keyboards
 
-## 🔧 Configuration
+To add a new keyboard:
 
-### Hardware Support
-- **Controller**: nice!nano v2 (RP2040)
-- **Bluetooth**: Built-in Bluetooth LE support
-- **RGB**: WS2812 LED strip support
-- **Battery**: Built-in battery monitoring
+1. Create a new directory under `keyboards/`
+2. Add the keymap file (`.dtsi` format)
+3. Create a corresponding config file in `config/`
+4. Update `build.yaml` to include the new keyboard
+5. Update this README
 
-### Keymap Layers
+## Configuration Files
 
-#### Base Layer
-Standard QWERTY layout with:
-- `Ctrl+` (hold) / `` ` `` (tap) on bottom left
-- `Alt+Space` (hold) / `Space` (tap) on bottom center
-- `Adjust+Enter` (hold) / `Enter` (tap) on bottom right
-- `Lower+Space` (hold) / `Space` (tap) on bottom right
-- `Raise+Cmd` (hold) / `Cmd` (tap) on bottom right
-
-#### Lower Layer
-Numbers, symbols, and special characters
-
-#### Raise Layer
-Function keys, media controls, and RGB controls
-
-#### Adjust Layer
-App launching, screenshot shortcuts, email macro, and system controls
-
-## 🎨 Customization
-
-### Modifying the Keymap
-Edit `config/boards/reviung41.keymap` to customize your layout.
-
-### Adding Macros
-Add new macros in the `macros` section of the keymap file.
-
-### RGB Configuration
-Modify `config/reviung41.conf` to adjust RGB settings.
-
-## 🔄 Automated Builds
-
-The firmware is automatically built via GitHub Actions when changes are pushed to the repository. Download the latest build from the [Actions tab](https://github.com/chiefmikey/reviung41/actions).
-
-## 📚 Documentation
-
-- [ZMK Documentation](https://zmk.dev/docs)
-- [Reviung41 Hardware](https://github.com/gtips/reviung41)
-- [nice!nano Documentation](https://nicekeyboards.com/nice-nano)
-
-## 🐛 Troubleshooting
-
-### Common Issues
-- **Build errors**: Check Zephyr environment setup
-- **Flash failures**: Ensure keyboard is in bootloader mode
-- **Bluetooth issues**: Check battery level and pairing
-
-### Getting Help
-- [ZMK Discord](https://discord.gg/5jeFQr2)
-- [GitHub Issues](https://github.com/chiefmikey/reviung41/issues)
-- [ZMK Documentation](https://zmk.dev/docs)
+- **`keymap.dtsi`**: Defines the keymap, macros, and behaviors
+- **`*.conf`**: Hardware-specific configuration (RGB, Bluetooth, etc.)
+- **`west.yml`**: ZMK dependencies and versions
+- **`build.yaml`**: GitHub Actions build matrix
