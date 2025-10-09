@@ -38,14 +38,10 @@ enum custom_keycodes {
     SPOTIFY                // Launch Spotify (Cmd+Option+S)
 };
 
-// Tap dance actions
-enum {
-    B1_B2
-};
-
-// Define tap dance actions
+// Tap dance actions - none needed for Reviung41
+// Define empty tap dance actions array for QMK compatibility
 tap_dance_action_t tap_dance_actions[] = {
-    [B1_B2] = ACTION_TAP_DANCE_DOUBLE(KC_MS_BTN1, KC_MS_BTN2),
+    // No tap dance actions needed for Reviung41
 };
 
 // Key aliases for readability
@@ -184,12 +180,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |CHROME|SLACK |SPOTIFY|      |-------.    ,-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |RGB_TOG|      |QK_BOOT|      /       \      |TD(B1_B2)|      |
+ *                   |RGB_TOG|      |QK_BOOT|      /       \      |RGB_HUI|      |
  *                   `----------------------'     '---------''----------------------'
  */
 [_ADJUST] = LAYOUT_reviung41(
     _______, _______, _______, _______,_______, SC_SELECT,                EMAIL, _______,   KC_UP, _______, _______, RGB_MOD,
     _______, _______, ITERM2, VSCODE, SC_AREA, SC_AREA2,                _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______,
     _______, _______, CHROME, SLACK,  SPOTIFY, _______,                 _______, _______, _______, _______, _______, _______,
-                                RGB_TOG, _______, QK_BOOT,                TD(B1_B2), _______
+                                RGB_TOG, _______, QK_BOOT,                RGB_HUI, _______
 )};
