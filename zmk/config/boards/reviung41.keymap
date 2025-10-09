@@ -1,6 +1,6 @@
 /*
  * Reviung41 ChiefMikey Keymap - ZMK Configuration
- * 
+ *
  * A comprehensive keymap for the Reviung41 split keyboard featuring:
  * - 4-layer layout (Base, Lower, Raise, Adjust)
  * - App launching shortcuts (iTerm2, VS Code, Chrome, Slack, Spotify)
@@ -9,10 +9,10 @@
  * - RGB lighting controls with animations
  * - Bluetooth support for wireless operation
  * - Optimized for macOS productivity workflows
- * 
+ *
  * Hardware: Reviung41 with nice!nano v2 (RP2040)
  * Firmware: ZMK
- * 
+ *
  * Copyright (c) 2020 The ZMK Contributors
  * SPDX-License-Identifier: MIT
  */
@@ -30,8 +30,7 @@
 
 / {
     macros {
-        // Email macro - sends placeholder email address
-        // Customize the email address in the bindings below
+        // Email macro - sends wolfemikl@gmail.com
         email: email {
             label = "email";
             compatible = "zmk,behavior-macro";
@@ -39,10 +38,10 @@
             tap-ms = <5>;
             #binding-cells = <0>;
             bindings
-                = <&macro_tap &kp Y &kp O &kp U &kp R &kp DOT>
-                , <&macro_tap &kp E &kp M &kp A &kp I &kp L>
+                = <&macro_tap &kp W &kp O &kp L &kp F &kp E>
+                , <&macro_tap &kp M &kp I &kp K &kp L>
                 , <&macro_tap &kp AT>
-                , <&macro_tap &kp E &kp X &kp A &kp M &kp P &kp L &kp E>
+                , <&macro_tap &kp G &kp M &kp A &kp I &kp L>
                 , <&macro_tap &kp DOT>
                 , <&macro_tap &kp C &kp O &kp M>
                 ;
@@ -177,7 +176,7 @@
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &kp LSHFT       &kp Z    &kp X    &kp C    &kp V    &kp B                                &kp N    &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHFT
 // |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
-                                                &kp LGUI  &mt LALT SPACE &lt adjust RET  &lt lower SPACE &lt raise BSLH
+                                                &kp LGUI  &mt LALT SPACE &lt adjust RET  &lt lower SPACE
 //                                             |----------+----------+----------|  |----------+----------+----------|
             >;
         };
@@ -191,7 +190,7 @@
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &kp HOME  &kp AMPS  &kp HASH  &kp PRCNT &kp EXCL  &kp PLUS                              &kp CARET &trans    &trans    &trans    &kp BSLH  &kp DEL
 // |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
-                                                &kp ASTR  &trans    &trans        &trans     &trans     &trans
+                                                &kp ASTR  &trans    &trans        &trans     &trans
 //                                             |----------+----------+----------|  |----------+----------+----------|
             >;
         };
@@ -205,7 +204,7 @@
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &kp PMNS &kp P6    &kp P7    &kp P8    &kp P9    &kp P0                                &kp RGB_SAD &kp RGB_VAD &kp RGB_SPD &kp C_PREV &kp C_VOLD &kp C_NEXT
 // |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
-                                                &kp RGB_HUD &kp RGB_HUI &kp RGB_RMOD        &kp RGB_MOD &kp RGB_HUI &trans
+                                                &kp RGB_HUD &kp RGB_HUI &kp RGB_RMOD        &kp RGB_MOD &kp RGB_HUI
 //                                             |----------+----------+----------|  |----------+----------+----------|
             >;
         };
@@ -213,13 +212,13 @@
         adjust_layer {
             bindings = <
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
-     &trans   &trans    &trans    &trans    &trans    &sc_select                              &email &trans    &kp UP   &trans    &trans    &kp C_AUDIO_CLICKY_TOGGLE
+     &trans   &trans    &trans    &trans    &trans    &sc_select                              &email &trans    &kp UP   &trans    &trans    &kp RGB_MOD
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &trans   &trans    &iterm2   &vscode   &sc_area  &sc_area2                              &trans &kp LEFT  &kp DOWN &kp RIGHT &trans    &trans
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &trans   &trans    &chrome   &slack    &spotify  &trans                                 &trans &trans    &trans    &trans    &trans    &trans
 // |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
-                                                &kp RGB_TOG &trans    &kp RESET              &kp MS_BTN1 &trans    &trans
+                                                &kp RGB_TOG &trans    &kp RESET              &kp MS_BTN1 &trans
 //                                             |----------+----------+----------|  |----------+----------+----------|
             >;
         };
