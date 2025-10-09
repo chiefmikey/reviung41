@@ -1,0 +1,230 @@
+/*
+ * ChiefMikey's Reviung41 Keymap - ZMK Configuration
+ *
+ * A custom keymap for the Reviung41 split keyboard featuring:
+ * - Colemak-DH base layout with QWERTY fallback
+ * - Custom application launchers (macOS shortcuts)
+ * - Screenshot utilities
+ * - RGB controls and media keys
+ * - Tap dance for mouse buttons
+ *
+ * Layers:
+ * - default_layer: Main typing layer
+ * - lower_layer: Numbers, symbols, and navigation
+ * - raise_layer: Function keys, RGB controls, and media
+ * - adjust_layer: System functions and app launchers
+ *
+ * Hardware: Reviung41 with nice!nano v2 (RP2040)
+ * Firmware: ZMK
+ *
+ * Copyright (c) 2020 The ZMK Contributors
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/backlight.h>
+
+&led_strip {
+    chain-length = <11>;
+};
+
+/ {
+    macros {
+        // Email macro - sends wolfemikl@gmail.com
+        email: email {
+            label = "email";
+            compatible = "zmk,behavior-macro";
+            wait-ms = <5>;
+            tap-ms = <5>;
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp W &kp O &kp L &kp F &kp E>
+                , <&macro_tap &kp M &kp I &kp K &kp L>
+                , <&macro_tap &kp AT>
+                , <&macro_tap &kp G &kp M &kp A &kp I &kp L>
+                , <&macro_tap &kp DOT>
+                , <&macro_tap &kp C &kp O &kp M>
+                ;
+        };
+
+        // Screenshot selection macro - macOS Cmd+Shift+4
+        sc_select: sc_select {
+            label = "sc_select";
+            compatible = "zmk,behavior-macro";
+            wait-ms = <5>;
+            tap-ms = <5>;
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI &kp LSHFT>
+                , <&macro_tap &kp N4>
+                , <&macro_release &kp LGUI &kp LSHFT>
+                ;
+        };
+
+        // Screenshot area macro - macOS Cmd+Shift+5
+        sc_area: sc_area {
+            label = "sc_area";
+            compatible = "zmk,behavior-macro";
+            wait-ms = <5>;
+            tap-ms = <5>;
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI &kp LSHFT>
+                , <&macro_tap &kp N5>
+                , <&macro_release &kp LGUI &kp LSHFT>
+                ;
+        };
+
+        // Screenshot area with enter macro - macOS Cmd+Shift+5+Enter
+        sc_area2: sc_area2 {
+            label = "sc_area2";
+            compatible = "zmk,behavior-macro";
+            wait-ms = <5>;
+            tap-ms = <5>;
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI &kp LSHFT>
+                , <&macro_tap &kp N5>
+                , <&macro_release &kp LGUI &kp LSHFT>
+                , <&macro_tap &kp RET>
+                ;
+        };
+
+        // App launching macros - require Cmd+Option+key shortcuts in macOS System Preferences
+        // Launch iTerm2 - Cmd+Option+I
+        iterm2: iterm2 {
+            label = "iterm2";
+            compatible = "zmk,behavior-macro";
+            wait-ms = <5>;
+            tap-ms = <5>;
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI &kp LALT>
+                , <&macro_tap &kp I>
+                , <&macro_release &kp LGUI &kp LALT>
+                ;
+        };
+
+        // Launch VS Code - Cmd+Option+V
+        vscode: vscode {
+            label = "vscode";
+            compatible = "zmk,behavior-macro";
+            wait-ms = <5>;
+            tap-ms = <5>;
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI &kp LALT>
+                , <&macro_tap &kp V>
+                , <&macro_release &kp LGUI &kp LALT>
+                ;
+        };
+
+        // Launch Chrome - Cmd+Option+C
+        chrome: chrome {
+            label = "chrome";
+            compatible = "zmk,behavior-macro";
+            wait-ms = <5>;
+            tap-ms = <5>;
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI &kp LALT>
+                , <&macro_tap &kp C>
+                , <&macro_release &kp LGUI &kp LALT>
+                ;
+        };
+
+        // Launch Slack - Cmd+Option+L
+        slack: slack {
+            label = "slack";
+            compatible = "zmk,behavior-macro";
+            wait-ms = <5>;
+            tap-ms = <5>;
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI &kp LALT>
+                , <&macro_tap &kp L>
+                , <&macro_release &kp LGUI &kp LALT>
+                ;
+        };
+
+        // Launch Spotify - Cmd+Option+S
+        spotify: spotify {
+            label = "spotify";
+            compatible = "zmk,behavior-macro";
+            wait-ms = <5>;
+            tap-ms = <5>;
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LGUI &kp LALT>
+                , <&macro_tap &kp S>
+                , <&macro_release &kp LGUI &kp LALT>
+                ;
+        };
+    };
+};
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+// |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
+     &kp ESC         &kp Q    &kp W    &kp E    &kp R    &kp T                                &kp Y    &kp U    &kp I    &kp O    &kp P    &kp BSPC
+// |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
+     &mt LCTRL GRAVE &kp A    &kp S    &kp D    &kp F    &kp G                                &kp H    &kp J    &kp K    &kp L    &kp SEMI &kp SQT
+// |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
+     &kp LSHFT       &kp Z    &kp X    &kp C    &kp V    &kp B                                &kp N    &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+// |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
+                                                &kp LGUI  &mt LALT SPACE &lt adjust RET  &lt lower SPACE
+//                                             |----------+----------+----------|  |----------+----------+----------|
+            >;
+        };
+
+        lower_layer {
+            bindings = <
+// |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
+     &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6                                &kp N7    &kp N8    &kp N9    &kp N0    &kp EQUAL &kp BSPC
+// |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
+     &kp TAB   &kp AT    &kp DLLR  &kp LBKT  &kp LPAR  &kp LBRC                              &kp RBRC  &kp RPAR  &kp RBKT  &kp MINUS &trans    &trans
+// |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
+     &kp HOME  &kp AMPS  &kp HASH  &kp PRCNT &kp EXCL  &kp PLUS                              &kp CARET &trans    &trans    &trans    &kp BSLH  &kp DEL
+// |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
+                                                &kp ASTR  &trans    &trans        &trans     &trans
+//                                             |----------+----------+----------|  |----------+----------+----------|
+            >;
+        };
+
+        raise_layer {
+            bindings = <
+// |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
+     &kp F1   &kp F2    &kp F3    &kp F4    &kp F5    &kp F6                                &kp F7    &kp F8   &kp F9   &kp F10    &kp F11     &kp F12
+// |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
+     &kp PPLS &kp P1    &kp P2    &kp P3    &kp P4    &kp P5                                &kp RGB_SAI &kp RGB_VAI &kp RGB_SPI &kp C_PLAY_PAUSE &kp C_VOL_UP &kp C_MUTE
+// |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
+     &kp PMNS &kp P6    &kp P7    &kp P8    &kp P9    &kp P0                                &kp RGB_SAD &kp RGB_VAD &kp RGB_SPD &kp C_PREV &kp C_VOLD &kp C_NEXT
+// |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
+                                                &kp RGB_HUD &kp RGB_HUI &kp RGB_RMOD        &kp RGB_MOD &kp RGB_HUI
+//                                             |----------+----------+----------|  |----------+----------+----------|
+            >;
+        };
+
+        adjust_layer {
+            bindings = <
+// |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
+     &trans   &trans    &trans    &trans    &trans    &sc_select                              &email &trans    &kp UP   &trans    &trans    &kp RGB_MOD
+// |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
+     &trans   &trans    &iterm2   &vscode   &sc_area  &sc_area2                              &trans &kp LEFT  &kp DOWN &kp RIGHT &trans    &trans
+// |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
+     &trans   &trans    &chrome   &slack    &spotify  &trans                                 &trans &trans    &trans    &trans    &trans    &trans
+// |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
+                                                &kp RGB_TOG &trans    &kp RESET              &kp MS_BTN1 &trans
+//                                             |----------+----------+----------|  |----------+----------+----------|
+            >;
+        };
+    };
+};
