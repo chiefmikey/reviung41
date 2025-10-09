@@ -28,7 +28,8 @@
         }
     },
     "ws2812": {
-        "pin": "GPIO3"
+        "pin": "GP3",
+        "driver": "vendor"
     },
     "features": {
         "bootmagic": false,
@@ -37,7 +38,8 @@
         "extrakey": true,
         "mousekey": false,
         "nkro": false,
-        "rgblight": true
+        "rgblight": true,
+        "tap_dance": true
     },
     "qmk": {
         "locking": {
@@ -46,13 +48,17 @@
         }
     },
     "matrix_pins": {
-        "cols": ["GPIO4", "GPIO6", "GPIO7", "GPIO8", "GPIO9", "GPIO10"],
-        "rows": ["GPIO12", "GPIO13", "GPIO14", "GPIO15", "GPIO16", "GPIO17", "GPIO18"]
+        "cols": ["GP4", "GP6", "GP7", "GP8", "GP9", "GP10"],
+        "rows": ["GP12", "GP13", "GP14", "GP15", "GP16", "GP17", "GP18"]
+    },
+    "matrix_size": {
+        "cols": 6,
+        "rows": 7
     },
     "diode_direction": "COL2ROW",
-    "usb_detect_pin": "GPIO19",
-    "usb_mcu_detect_pin": "GPIO20",
-    "processor": "rp2040",
+    "usb_detect_pin": "GP19",
+    "usb_mcu_detect_pin": "GP20",
+    "processor": "RP2040",
     "bootloader": "rp2040",
     "layout_aliases": {
         "LAYOUT_reviung41": "LAYOUT"
