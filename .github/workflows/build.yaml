@@ -11,9 +11,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker.io/zmkfirmware/zmk-build-arm:3.5
+      image: zmkfirmware/zmk-build-arm:3.5
     steps:
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Cache West Modules
@@ -41,9 +41,10 @@ jobs:
       - name: Build Firmware
         run: |
           west build -s zmk/zmk/app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/config -DSHIELD=reviung41 -DKEYMAP=default
+          cp build/zephyr/zmk.uf2 build/zephyr/nice_nano_v2-reviung41.uf2
 
       - name: Upload Firmware Artifact
         uses: actions/upload-artifact@v4
         with:
           name: nice_nano_v2-reviung41-default
-          path: build/zephyr/zmk.uf2
+          path: build/zephyr/nice_nano_v2-reviung41.uf2
