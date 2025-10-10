@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
 
 jobs:
   build:
@@ -18,26 +17,29 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install West
-        run: pip install west
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build gperf ccache dfu-util \
+            device-tree-compiler wget unzip file \
+            python3-pip python3-setuptools python3-wheel xz-utils
+          pip3 install --user -U west
 
       - name: Initialize West and Update
         run: |
           west init -l zmk/zmk/app
           west update
-
-      - name: Export Zephyr CMake Package
-        run: west zephyr-export
+          west zephyr-export
+          pip3 install --user -r zephyr/scripts/requirements.txt
 
       - name: Build Firmware
         run: |
           west build -s zmk/zmk/app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/config -DSHIELD=reviung41 -DKEYMAP=default
         env:
-          ZEPHYR_TOOLCHAIN_VARIANT: zephyr
-          ZEPHYR_SDK_INSTALL_DIR: /opt/zephyr-sdk
+          PATH: ${{ runner.tool_cache }}/python/bin:${{ env.PATH }}
 
       - name: Upload Firmware Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: firmware
+          name: zmk_firmware
           path: build/zephyr/zmk.uf2
