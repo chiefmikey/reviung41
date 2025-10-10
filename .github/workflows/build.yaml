@@ -24,7 +24,7 @@ jobs:
       - name: Initialize West and Update
         run: |
           west init -l app
-          west update --force
+          west update -f always
 
       - name: Export Zephyr CMake Package
         run: west zephyr-export
