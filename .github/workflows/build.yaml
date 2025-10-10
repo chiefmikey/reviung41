@@ -23,7 +23,7 @@ jobs:
 
       - name: Initialize West and Update
         run: |
-          rm -rf .west app zmk README.md
+          rm -rf .west app README.md
           west init -l zmk/config
           west update
 
