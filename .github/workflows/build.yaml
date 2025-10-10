@@ -23,7 +23,7 @@ jobs:
 
       - name: Initialize West and Update
         run: |
-          west init -l app
+          west init -l zmk/zmk/app
           west update
 
       - name: Export Zephyr CMake Package
@@ -31,7 +31,7 @@ jobs:
 
       - name: Build Firmware
         run: |
-          west build -s app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/config -DSHIELD=reviung41 -DKEYMAP=default
+          west build -s zmk/zmk/app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/config -DSHIELD=reviung41 -DKEYMAP=default
         env:
           ZEPHYR_TOOLCHAIN_VARIANT: zephyr
           ZEPHYR_SDK_INSTALL_DIR: /opt/zephyr-sdk
