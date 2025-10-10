@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: docker.io/zmkfirmware/zmk-build-arm:3.5
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -33,9 +35,6 @@ jobs:
       - name: Build Firmware
         run: |
           cd zmk && west build -s zmk/app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/config -DSHIELD=reviung41 -DKEYMAP=default
-        env:
-          ZEPHYR_TOOLCHAIN_VARIANT: zephyr
-          ZEPHYR_SDK_INSTALL_DIR: /opt/zephyr-sdk
 
       - name: Upload Firmware Artifact
         uses: actions/upload-artifact@v4
