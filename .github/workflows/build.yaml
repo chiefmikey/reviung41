@@ -4,37 +4,46 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: docker.io/zmkfirmware/zmk-build-arm:3.5
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set Up Python
-        uses: actions/setup-python@v4
+      - name: Cache West Modules
+        uses: actions/cache@v4
         with:
-          python-version: '3.x'
+          path: |
+            modules/
+            tools/
+            zephyr/
+            bootloader/
+          key: ${{ runner.os }}-build-${{ hashFiles('zmk/zmk/app/west.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
-      - name: Install Dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y cmake ninja-build gperf ccache dfu-util
-          pip install west
+      - name: Initialize West Workspace
+        run: west init -l zmk/zmk/app
 
-      - name: Initialize West and Update
-        run: |
-          west init -l app/
-          west update
-          west zephyr-export
+      - name: Update West Modules
+        run: west update
+
+      - name: Export Zephyr CMake Package
+        run: west zephyr-export
 
       - name: Build Firmware
         run: |
-          west build -s app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/config -DSHIELD=reviung41 -DKEYMAP=default
+          west build -s zmk/zmk/app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/config -DSHIELD=reviung41 -DKEYMAP=default
         env:
-          ZEPHYR_TOOLCHAIN_VARIANT: zephyr
-          ZEPHYR_SDK_INSTALL_DIR: /opt/zephyr-sdk
+          BOARD: nice_nano_v2
 
       - name: Upload Firmware Artifact
         uses: actions/upload-artifact@v4
