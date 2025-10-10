@@ -19,27 +19,28 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake ninja-build gperf ccache dfu-util \
-            device-tree-compiler wget unzip file \
-            python3-pip python3-setuptools python3-wheel xz-utils
+          sudo apt update
+          sudo apt install -y cmake ninja-build gperf ccache dfu-util wget \
+            device-tree-compiler python3-dev python3-pip python3-setuptools \
+            python3-tk python3-wheel xz-utils file make gcc gcc-multilib \
+            g++-multilib libsdl2-dev libmagic1
           pip3 install --user -U west
 
-      - name: Initialize West and Update
+      - name: Initialize West and Update Modules
         run: |
-          west init -l zmk/zmk/app
+          west init -l app/
           west update
           west zephyr-export
           pip3 install --user -r zephyr/scripts/requirements.txt
 
       - name: Build Firmware
         run: |
-          west build -s zmk/zmk/app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/config -DSHIELD=reviung41 -DKEYMAP=default
+          west build -s app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/config -DSHIELD=reviung41 -DKEYMAP=default
         env:
-          PATH: ${{ runner.tool_cache }}/python/bin:${{ env.PATH }}
+          BOARD: nice_nano_v2
 
       - name: Upload Firmware Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: zmk_firmware
+          name: firmware
           path: build/zephyr/zmk.uf2
