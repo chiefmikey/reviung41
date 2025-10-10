@@ -11,42 +11,39 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: docker.io/zmkfirmware/zmk-build-arm:3.5
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Cache West Modules
-        uses: actions/cache@v4
+      - name: Set Up Python
+        uses: actions/setup-python@v4
         with:
-          path: |
-            modules/
-            tools/
-            zephyr/
-            bootloader/
-          key: ${{ runner.os }}-build-${{ hashFiles('zmk/zmk/app/west.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          python-version: '3.x'
 
-      - name: Initialize West Workspace
-        run: west init -l zmk/zmk/app
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build gperf ccache dfu-util wget \
+            device-tree-compiler python3-pip python3-setuptools python3-wheel xz-utils file \
+            make gcc gcc-multilib g++-multilib libsdl2-dev libmagic1
+          pip3 install --user -U west
 
-      - name: Update West Modules
-        run: west update
-
-      - name: Export Zephyr CMake Package
-        run: west zephyr-export
+      - name: Initialize West and Update
+        run: |
+          west init -l app
+          west update
+          west zephyr-export
+          pip3 install --user -r zephyr/scripts/requirements.txt
 
       - name: Build Firmware
         run: |
-          west build -s zmk/zmk/app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/config -DSHIELD=reviung41 -DKEYMAP=default
+          west build -s app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/config -DSHIELD=reviung41 -DKEYMAP=default
         env:
-          BOARD: nice_nano_v2
+          ZEPHYR_TOOLCHAIN_VARIANT: zephyr
+          ZEPHYR_SDK_INSTALL_DIR: /opt/zephyr-sdk
 
       - name: Upload Firmware Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: firmware
+          name: zmk_firmware
           path: build/zephyr/zmk.uf2
