@@ -10,34 +10,40 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build Firmware
+    container:
+      image: docker.io/zmkfirmware/zmk-build-arm:3.5
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - name: Cache West Modules
+        uses: actions/cache@v4
         with:
-          python-version: '3.11'
+          path: |
+            modules/
+            tools/
+            zephyr/
+            bootloader/
+          key: ${{ runner.os }}-build-${{ hashFiles('zmk/zmk/app/west.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
-      - name: Install dependencies
+      - name: Initialize West Workspace
+        run: west init -l zmk/zmk/app
+
+      - name: Update West Modules
+        run: west update
+
+      - name: Export Zephyr CMake Package
+        run: west zephyr-export
+
+      - name: Build Firmware
         run: |
-          pip install west
+          west build -s zmk/zmk/app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/config -DSHIELD=reviung41 -DKEYMAP=default
 
-      - name: Setup ZMK
-        run: |
-          west init -m https://github.com/zmkfirmware/zmk.git --mr main .
-          west update
-          west zephyr-export
-
-      - name: Build
-        run: |
-          west build -p -b nice_nano_v2 -d build/nice_nano_v2/reviung41 -s zmk/app -- -DZMK_CONFIG="$(pwd)/config" -DSHIELD=reviung41 -DKEYMAP=default
-
-      - name: Upload Firmware
+      - name: Upload Firmware Artifact
         uses: actions/upload-artifact@v4
         with:
           name: nice_nano_v2-reviung41-default
-          path: |
-            build/nice_nano_v2/reviung41/zephyr/*.uf2
-            build/nice_nano_v2/reviung41/zephyr/*.hex
+          path: build/zephyr/zmk.uf2
