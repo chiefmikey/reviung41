@@ -1,7 +1,38 @@
 name: Build Firmware
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    runs-on: ubuntu-latest
+    container:
+      image: docker.io/zmkfirmware/zmk-build-arm:3.5
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Initialize West
+        run: west init -l app
+
+      - name: Update West Modules
+        run: west update
+
+      - name: Export Zephyr CMake Package
+        run: west zephyr-export
+
+      - name: Build Firmware
+        run: |
+          west build -s app -b nice_nano_v2 -- -DSHIELD=reviung41
+          mv build/zephyr/zmk.uf2 build/zephyr/reviung41-nice_nano_v2.uf2
+
+      - name: Upload Firmware Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware
+          path: build/zephyr/reviung41-nice_nano_v2.uf2
