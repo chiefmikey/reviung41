@@ -1,7 +1,43 @@
-name: Build Firmware
+name: Build ZMK Firmware
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install West
+        run: pip install west
+
+      - name: Initialize West and Update
+        run: |
+          west init -l app
+          west update
+
+      - name: Export Zephyr CMake Package
+        run: west zephyr-export
+
+      - name: Build Firmware
+        run: |
+          west build -s app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/zmk/config -DSHIELD=reviung41 -DKEYMAP=default
+        env:
+          ZEPHYR_TOOLCHAIN_VARIANT: zephyr
+          ZEPHYR_SDK_INSTALL_DIR: /opt/zephyr-sdk
+
+      - name: Upload Firmware Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware
+          path: build/zephyr/zmk.uf2
