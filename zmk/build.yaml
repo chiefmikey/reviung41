@@ -15,4 +15,3 @@
 include:
   - board: nice_nano_v2
     shield: reviung41
-    keymap: reviung41_test
