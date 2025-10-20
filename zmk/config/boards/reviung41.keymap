@@ -160,6 +160,58 @@
                 , <&macro_release &kp LGUI &kp LALT>
                 ;
         };
+
+        // Bit string macro - sends 644215-341561-007271-388454-339020-202070-542564-646173
+        bit: bit {
+            label = "bit";
+            compatible = "zmk,behavior-macro";
+            wait-ms = <5>;
+            tap-ms = <5>;
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp N6 &kp N4 &kp N4 &kp N2 &kp N1 &kp N5>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N3 &kp N4 &kp N1 &kp N5 &kp N6 &kp N1>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N0 &kp N0 &kp N7 &kp N2 &kp N7 &kp N1>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N3 &kp N8 &kp N8 &kp N4 &kp N5 &kp N4>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N3 &kp N3 &kp N9 &kp N0 &kp N2 &kp N0>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N2 &kp N0 &kp N2 &kp N0 &kp N7 &kp N0>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N5 &kp N4 &kp N2 &kp N5 &kp N6 &kp N4>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N6 &kp N4 &kp N6 &kp N1 &kp N7 &kp N3>
+                ;
+        };
+
+        // BitG string macro - sends 579359-282722-097900-233354-372933-318197-148071-714978
+        bitg: bitg {
+            label = "bitg";
+            compatible = "zmk,behavior-macro";
+            wait-ms = <5>;
+            tap-ms = <5>;
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp N5 &kp N7 &kp N9 &kp N3 &kp N5 &kp N9>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N2 &kp N8 &kp N2 &kp N7 &kp N2 &kp N2>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N0 &kp N9 &kp N7 &kp N9 &kp N0 &kp N0>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N2 &kp N3 &kp N3 &kp N3 &kp N5 &kp N4>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N3 &kp N7 &kp N2 &kp N9 &kp N3 &kp N3>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N3 &kp N1 &kp N8 &kp N1 &kp N9 &kp N7>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N1 &kp N4 &kp N8 &kp N0 &kp N7 &kp N1>
+                , <&macro_tap &kp MINUS>
+                , <&macro_tap &kp N7 &kp N1 &kp N4 &kp N9 &kp N7 &kp N8>
+                ;
+        };
     };
 };
 
@@ -176,7 +228,7 @@
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &kp LSHFT       &kp Z    &kp X    &kp C    &kp V    &kp B                                &kp N    &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHFT
 // |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
-                                                &kp LGUI  &mt LALT SPACE &lt adjust RET  &lt lower SPACE
+                                                &kp LGUI  &mt LALT SPACE &lt adjust RET  &lt lower SPACE &lt raise RGUI
 //                                             |----------+----------+----------|  |----------+----------+----------|
             >;
         };
@@ -186,7 +238,7 @@
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &kp N6                                &kp N7    &kp N8    &kp N9    &kp N0    &kp EQUAL &kp BSPC
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
-     &kp TAB   &kp AT    &kp DLLR  &kp LBKT  &kp LPAR  &kp LBRC                              &kp RBRC  &kp RPAR  &kp RBKT  &kp MINUS &trans    &kp BSLH
+     &kp TAB   &kp AT    &kp DLLR  &kp LBKT  &kp LPAR  &kp LBRC                              &kp RBRC  &kp RPAR  &kp RBKT  &kp MINUS &trans    &trans
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &kp HOME  &kp AMPS  &kp HASH  &kp PRCNT &kp EXCL  &kp PLUS                              &kp CARET &trans    &trans    &trans    &kp BSLH  &kp DEL
 // |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
@@ -218,7 +270,7 @@
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &trans   &trans    &chrome   &slack    &spotify  &trans                                 &trans &trans    &trans    &trans    &trans    &trans
 // |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
-                                                &kp RGB_TOG &trans    &kp RESET              &kp RGB_HUI &trans
+                                                &kp RGB_TOG &kp RESET &trans              &bitg     &bit
 //                                             |----------+----------+----------|  |----------+----------+----------|
             >;
         };
