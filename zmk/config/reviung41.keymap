@@ -254,7 +254,7 @@
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &kp KP_PLUS &kp KP_N1    &kp KP_N2    &kp KP_N3    &kp KP_N4    &kp KP_N5                                &rgb_ug RGB_SAI &rgb_ug RGB_BRI &rgb_ug RGB_SPI &kp C_PLAY_PAUSE &kp C_VOL_UP &kp C_MUTE
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
-     &kp KP_MINUS &kp KP_N6    &kp KP_N7    &kp KP_N8    &kp KP_N9    &kp KP_N0                                &rgb_ug RGB_SAD &rgb_ug RGB_BRD &rgb_ug RGB_SPD &kp C_PREV &kp C_VOLD &kp C_NEXT
+     &kp KP_MINUS &kp KP_N6    &kp KP_N7    &kp KP_N8    &kp KP_N9    &kp KP_N0                                &rgb_ug RGB_SAD &rgb_ug RGB_BRD &rgb_ug RGB_SPD &kp C_PREV &kp C_VOL_DN &kp C_NEXT
 // |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
                                                 &rgb_ug RGB_HUD &rgb_ug RGB_HUI &rgb_ug RGB_EFR        &rgb_ug RGB_EFF &rgb_ug RGB_HUI
 //                                             |----------+----------+----------|  |----------+----------+----------|
