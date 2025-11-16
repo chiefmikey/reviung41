@@ -252,11 +252,11 @@
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &kp F1   &kp F2    &kp F3    &kp F4    &kp F5    &kp F6                                &kp F7    &kp F8   &kp F9   &kp F10    &kp F11     &kp F12
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
-     &kp KP_PLUS &kp KP_N1    &kp KP_N2    &kp KP_N3    &kp KP_N4    &kp KP_N5                                &kp RGB_SAI &kp RGB_VAI &kp RGB_SPI &kp C_PLAY_PAUSE &kp C_VOL_UP &kp C_MUTE
+     &kp KP_PLUS &kp KP_N1    &kp KP_N2    &kp KP_N3    &kp KP_N4    &kp KP_N5                                &rgb_ug RGB_SAI &rgb_ug RGB_BRI &rgb_ug RGB_SPI &kp C_PLAY_PAUSE &kp C_VOL_UP &kp C_MUTE
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
-     &kp KP_MINUS &kp KP_N6    &kp KP_N7    &kp KP_N8    &kp KP_N9    &kp KP_N0                                &kp RGB_SAD &kp RGB_VAD &kp RGB_SPD &kp C_PREV &kp C_VOLD &kp C_NEXT
+     &kp KP_MINUS &kp KP_N6    &kp KP_N7    &kp KP_N8    &kp KP_N9    &kp KP_N0                                &rgb_ug RGB_SAD &rgb_ug RGB_BRD &rgb_ug RGB_SPD &kp C_PREV &kp C_VOLD &kp C_NEXT
 // |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
-                                                &kp RGB_HUD &kp RGB_HUI &kp RGB_RMOD        &kp RGB_MOD &kp RGB_HUI
+                                                &rgb_ug RGB_HUD &rgb_ug RGB_HUI &rgb_ug RGB_EFR        &rgb_ug RGB_EFF &rgb_ug RGB_HUI
 //                                             |----------+----------+----------|  |----------+----------+----------|
             >;
         };
@@ -264,13 +264,13 @@
         adjust_layer {
             bindings = <
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
-     &trans   &trans    &trans    &trans    &trans    &sc_select                              &email &trans    &kp UP   &trans    &trans    &kp RGB_MOD
+     &trans   &trans    &trans    &trans    &trans    &sc_select                              &email &trans    &kp UP   &trans    &trans    &rgb_ug RGB_EFF
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &trans   &trans    &iterm2   &vscode   &sc_area  &sc_area2                              &trans &kp LEFT  &kp DOWN &kp RIGHT &trans    &trans
 // |----------+----------+----------+----------+----------+----------|                        |----------+----------+----------+----------+----------+----------|
      &trans   &trans    &chrome   &slack    &spotify  &trans                                 &trans &trans    &trans    &trans    &trans    &trans
 // |----------+----------+----------+----------+----------+----------+----------|  |----------+----------+----------+----------+----------+----------+----------|
-                                                &kp RGB_TOG &kp RESET &trans              &bitg     &bit
+                                                &rgb_ug RGB_TOG &kp RESET &trans              &bitg     &bit
 //                                             |----------+----------+----------|  |----------+----------+----------|
             >;
         };
